@@ -32,8 +32,15 @@ def extract_data(url):
                         data[th.text] = li_data
                 else:
                     data[th.text] = td.text
+                    
+                    paragraphs = soup.find_all('p')
+    if len(paragraphs) > 1:
+        description = paragraphs[2].text.strip()
+    else:
+        description = "No paragraph found."
 
-    print(data)
+    print("Company Data:", data)
+    print("description:", description)
 
 
 extract_data("https://en.wikipedia.org/wiki/Nvidia")
